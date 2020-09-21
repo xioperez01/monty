@@ -7,6 +7,9 @@
 
 void print_dlistint(stack_t *h)
 {
+	if (!h)
+		return;
+
 	while (h && h != NULL)
 	{
 		printf("%d\n", h->n);
@@ -27,7 +30,10 @@ stack_t *add_dnodeint(stack_t **head, const int n)
 	stack_t *new_node = malloc(sizeof(stack_t));
 
 	if (new_node == NULL)
-		return (NULL);
+	{
+		printf("Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 
 	new_node->n = n;
 	new_node->next = *head;
